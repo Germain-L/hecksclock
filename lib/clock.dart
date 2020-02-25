@@ -113,6 +113,12 @@ class _ClockState extends State<Clock> {
                 opacity: opacity,
               )
             ),
+
+            Positioned(
+              right: 10,
+              bottom: 10,
+              child: Text("not my idea, reproduction of https://www.jacopocolo.com/hexclock/", style: TextStyle(color: Colors.white38, fontSize: 18),),
+            ),
             
             Positioned(
               right: 10,

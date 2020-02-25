@@ -25,7 +25,7 @@ class _ClockState extends State<Clock> {
           children: <Widget>[
             RaisedButton(
               highlightColor: Colors.white70,
-              hoverColor: Colors.white30,
+              hoverColor: Colors.white12,
               color: Colors.transparent,
               onPressed: () => trueColours = !trueColours,
               child: Padding(

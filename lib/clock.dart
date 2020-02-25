@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 class Clock extends StatefulWidget {
   @override
@@ -115,9 +116,12 @@ class _ClockState extends State<Clock> {
             ),
 
             Positioned(
-              right: 10,
+              left: 10,
               bottom: 10,
-              child: Text("not my idea, reproduction of https://www.jacopocolo.com/hexclock/", style: TextStyle(color: Colors.white38, fontSize: 18),),
+              child: Container(
+                width: MediaQuery.of(context).size.width*0.8,
+                child: AutoSizeText("reproduction of jacopocolo.com/hexclock/", style: TextStyle(color: Colors.white38, fontSize: 18),)
+              ),
             ),
             
             Positioned(

@@ -24,8 +24,14 @@ class _ClockState extends State<Clock> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             RaisedButton(
+              highlightColor: Colors.white70,
+              hoverColor: Colors.white30,
+              color: Colors.transparent,
               onPressed: () => trueColours = !trueColours,
-              child: Text(colourType, style: TextStyle(color: Colors.white, fontSize: 30),),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(colourType, style: TextStyle(color: Colors.white, fontSize: 30),),
+              ),
             ),
             SizedBox(height: 10),
             Text(desc, style: TextStyle(fontSize: 25, color: Colors.white))
@@ -69,7 +75,7 @@ class _ClockState extends State<Clock> {
     });
   }
 
-  Color col = Colors.blue;
+  Color col = Colors.white;
   String text = "";
   double opacity;
 

@@ -52,7 +52,14 @@ class _ClockState extends State<Clock> {
   }
 
   String createText() {
-    return "#${DateTime.now().hour} ${DateTime.now().minute} ${DateTime.now().second}";
+    String hours = DateTime.now().hour.toString();
+    String minutes = DateTime.now().minute.toString();
+    String seconds = DateTime.now().second.toString();
+
+    if (hours.length == 1) hours = "0"+hours;
+    if (minutes.length == 1) minutes = "0"+minutes;
+    if (seconds.length == 1) seconds = "0"+seconds;
+    return "#$hours $minutes $seconds";
   }
 
   void animateOpacity() {

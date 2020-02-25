@@ -105,7 +105,7 @@ class _ClockState extends State<Clock> {
               right: 10,
               bottom: 10,
               child: IconButton(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.settings, color: Colors.white54,),
                 onPressed: () => animateOpacity()
               ),
             ),

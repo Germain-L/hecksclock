@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+
+//since clock needs to change it is stateful
 class Clock extends StatefulWidget {
   @override
   _ClockState createState() => _ClockState();
@@ -9,6 +11,8 @@ class Clock extends StatefulWidget {
 
 class _ClockState extends State<Clock> {
   bool trueColours = false;
+
+  //this widget is used to change how the clock looks
   Widget settings() {
     String colourType = "True colours";
     String desc;
@@ -18,6 +22,7 @@ class _ClockState extends State<Clock> {
       {colourType = "Brighter colours", desc = "Currently doubling each hex value (hours, min, secs) given by time"};
 
     return Container(
+      //keeps the colour of the clock changing
       color: col,
       child: Center(
         child: Column(
@@ -28,10 +33,12 @@ class _ClockState extends State<Clock> {
               highlightColor: Colors.white70,
               hoverColor: Colors.white12,
               color: Colors.transparent,
+
+              //flips which colour pattern to use on press
               onPressed: () => trueColours = !trueColours,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text(colourType, style: TextStyle(color: Colors.white, fontSize: 30),),
+                child: Text(colourType, style: TextStyle(color: Colors.white, fontSize: 20),),
               ),
             ),
             SizedBox(height: 10),
@@ -43,25 +50,39 @@ class _ClockState extends State<Clock> {
   }
 
   Color createRealColour() {
-    int hours = DateTime.now().hour;
-    int mins = DateTime.now().minute;
-    int secs = DateTime.now().second;
-    var colour = Color.fromRGBO(hours, mins, secs, 1);
+    //gets current time and splits into hours, mins and secs
+    DateTime now = DateTime.now();
+    int hours = now.hour;
+    int mins = now.minute;
+    int secs = now.second;
+
+    //converts time to RGBO colour, 1 being opacity
+    Color colour = Color.fromRGBO(hours, mins, secs, 1);
     return colour;
   }
 
   Color createFunColour() {
-    int hours = DateTime.now().hour*2;
-    int mins = DateTime.now().minute*2;
-    int secs = DateTime.now().second*2;
-    var colour = Color.fromRGBO(hours, mins, secs, 1);
+    // gets current time and splits into hours, mins and secs
+    DateTime now = DateTime.now();
+    int hours = now.hour*2;
+    int mins = now.minute*2;
+    int secs = now.second*2;
+
+    // converts time to RGBO colour, 1 being opacity
+    Color colour = Color.fromRGBO(hours, mins, secs, 1);
     return colour;
   }
 
   String createText() {
-    String hours = DateTime.now().hour.toString();
-    String minutes = DateTime.now().minute.toString();
-    String seconds = DateTime.now().second.toString();
+    //create the text to display
+    DateTime now = DateTime.now();
+    int h = now.hour;
+    int m = now.minute;
+    int s = now.second;
+
+    String hours = h.toString();
+    String minutes = m.toString();
+    String seconds = s.toString();
 
     if (hours.length == 1) hours = "0"+hours;
     if (minutes.length == 1) minutes = "0"+minutes;
@@ -70,7 +91,7 @@ class _ClockState extends State<Clock> {
   }
 
   void animateOpacity() {
-    print("changing opacity");
+    //display settings or not
     setState(() {
       opacity == 0 ? opacity = 1 : opacity = 0;
     });
@@ -84,6 +105,8 @@ class _ClockState extends State<Clock> {
   void initState() {
     super.initState();
     opacity = 0;
+
+    // update clock every seconds
     Timer.periodic(Duration(seconds: 1), (v) {
       setState(() {
         trueColours == true ? col = createRealColour() : col = createFunColour();
@@ -111,6 +134,7 @@ class _ClockState extends State<Clock> {
             Center(
               child: Opacity(
                 child: settings(),
+                //displayed if opacity is 1
                 opacity: opacity,
               )
             ),

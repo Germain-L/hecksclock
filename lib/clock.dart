@@ -127,7 +127,7 @@ class _ClockState extends State<Clock> {
             Center(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 50, color: Colors.white),
+                style: TextStyle(fontSize: 50, color: Colors.white, fontWeight: FontWeight.w100),
               ),
             ),
 
